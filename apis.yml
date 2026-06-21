@@ -1,0 +1,145 @@
+aid: reonomy
+url: https://raw.githubusercontent.com/api-evangelist/reonomy/refs/heads/main/apis.yml
+name: Reonomy
+kind: company
+description: Reonomy (an Altus Group company) is a commercial real-estate property-intelligence
+  platform whose REST API delivers property search, property detail, ownership, mortgage,
+  sales and debt, tax, tenant, and contact / skip-trace data across U.S. commercial
+  real estate. The API resolves addresses to a stable Reonomy property ID and returns
+  rich detail records keyed by that ID.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Commercial Real Estate
+- Property Data
+- Property Intelligence
+- Ownership
+- Skip Trace
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: reonomy:property-search
+  name: Reonomy Property Search API
+  tags:
+  - Search
+  - Properties
+  - Geospatial
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.reonomy.com/v2/docs/guides/search/
+  baseURL: https://api.reonomy.com/v2
+  properties:
+  - url: https://api.reonomy.com/v2/docs/guides/search/
+    type: Documentation
+  - url: https://api.reonomy.com/v2/docs/api/reference/
+    type: APIReference
+  - url: openapi/reonomy-openapi.yml
+    type: OpenAPI
+  description: Searches U.S. commercial real-estate properties by attribute filters
+    (asset category, land use, building area, sale price, dates) and map filters
+    (radius circle, polygon, bounding box), returning matching property IDs and
+    coordinates. Includes the address / geolocation resolution endpoint that maps
+    a known property to its Reonomy property ID.
+- aid: reonomy:property-detail
+  name: Reonomy Property Detail API
+  tags:
+  - Property Detail
+  - Parcel
+  - Bulk
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.reonomy.com/v2/docs/guides/property-details/
+  baseURL: https://api.reonomy.com/v2
+  properties:
+  - url: https://api.reonomy.com/v2/docs/guides/property-details/
+    type: Documentation
+  - url: https://api.reonomy.com/v2/docs/api/reference/
+    type: APIReference
+  - url: openapi/reonomy-openapi.yml
+    type: OpenAPI
+  description: Retrieves detailed records for a single property by ID, or up to 250
+    properties at once via the bulk endpoint, with selectable detail types (basic,
+    taxes, sales, mortgages, ownership, tenants, foreclosure).
+- aid: reonomy:ownership
+  name: Reonomy Ownership API
+  tags:
+  - Ownership
+  - Reported Owners
+  - Companies
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.reonomy.com/v2/docs/api/reference/
+  baseURL: https://api.reonomy.com/v2
+  properties:
+  - url: https://api.reonomy.com/v2/docs/api/reference/
+    type: APIReference
+  - url: openapi/reonomy-openapi.yml
+    type: OpenAPI
+  description: The ownership detail type on the Property Detail API returns likely
+    owners, reported owners, mortgage signatories, and linked companies for a
+    property, surfaced through the property and bulk endpoints.
+- aid: reonomy:sales-debt
+  name: Reonomy Sales & Debt API
+  tags:
+  - Sales
+  - Mortgages
+  - Debt
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.reonomy.com/v2/docs/api/reference/
+  baseURL: https://api.reonomy.com/v2
+  properties:
+  - url: https://api.reonomy.com/v2/docs/api/reference/
+    type: APIReference
+  - url: openapi/reonomy-openapi.yml
+    type: OpenAPI
+  description: The sales, mortgages, and foreclosure detail types on the Property
+    Detail API return transaction history, deed sale amounts, lender and loan
+    data (including CMBS), and default / foreclosure records for a property.
+- aid: reonomy:tenants
+  name: Reonomy Tenants API
+  tags:
+  - Tenants
+  - Occupancy
+  - Businesses
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.reonomy.com/v2/docs/api/reference/
+  baseURL: https://api.reonomy.com/v2
+  properties:
+  - url: https://api.reonomy.com/v2/docs/api/reference/
+    type: APIReference
+  - url: openapi/reonomy-openapi.yml
+    type: OpenAPI
+  description: The tenants detail type on the Property Detail API returns occupant
+    business data and associated contacts for a property.
+- aid: reonomy:contacts
+  name: Reonomy Contacts API
+  tags:
+  - Contacts
+  - Skip Trace
+  - Persons
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.reonomy.com/v2/docs/api/reference/
+  baseURL: https://api.reonomy.com/v2
+  properties:
+  - url: https://api.reonomy.com/v2/docs/api/reference/
+    type: APIReference
+  - url: openapi/reonomy-openapi.yml
+    type: OpenAPI
+  description: Contact data (persons with names, jobs, addresses, phones, and emails)
+    is returned through the ownership and tenant detail types; a filter_pii option
+    excludes personally identifiable fields when required.
+common:
+- type: GitHubOrganization
+  url: https://github.com/reonomy
+- type: LinkedIn
+  url: https://www.linkedin.com/company/reonomy
+- type: Website
+  url: https://www.reonomy.com
+- type: Documentation
+  url: https://api.reonomy.com/v2/docs/
+- type: Plans
+  url: plans/reonomy-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/reonomy-rate-limits.yml
+- type: FinOps
+  url: finops/reonomy-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,63 @@
+aid: reonomy
+name: Reonomy
+review:
+  question: Does Reonomy expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    Per current API Evangelist scope, HTTP Server-Sent Events (SSE) is
+    in-scope for AsyncAPI modeling. Reonomy's documented Property API is a
+    synchronous request/response REST API with no SSE streaming and no
+    WebSocket surface, so no AsyncAPI document was authored.
+findings:
+  summary: |
+    Reonomy does not publish a documented public WebSocket API. The Reonomy
+    Property API is a synchronous REST (HTTPS) API served under
+    https://api.reonomy.com/v2, authenticated with HTTP Basic Authentication
+    using a base64-encoded access-key / secret-key token. Search results are
+    paginated with an opaque search_token (client re-requests for the next
+    page) rather than streamed. No realtime, bidirectional, or streaming
+    WebSocket (ws:// or wss://) endpoint and no Server-Sent Events surface
+    are documented for any operation. Bulk delivery is handled by separate
+    asynchronous batch jobs and bulk data feeds, not by a socket transport.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.reonomy.com/v2
+      documented: true
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No Server-Sent Events streaming surface is documented for any Reonomy endpoint.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in Reonomy's API reference or developer guides as of the review date.
+  endpointsConfirmedRest:
+    - POST https://api.reonomy.com/v2/search/summaries
+    - POST https://api.reonomy.com/v2/search/property-shapes
+    - POST https://api.reonomy.com/v2/resolve/property
+    - GET  https://api.reonomy.com/v2/property/{property_id}
+    - POST https://api.reonomy.com/v2/property/bulk
+sources:
+  - url: https://api.reonomy.com/v2/docs/
+    type: Documentation
+    note: Documentation home; describes a REST API authenticated with HTTP Basic Authentication. No WebSocket mentioned.
+  - url: https://api.reonomy.com/v2/docs/api/reference/
+    type: APIReference
+    note: All documented operations are HTTPS REST under /v2.
+  - url: https://api.reonomy.com/v2/docs/guides/getting-started/
+    type: Documentation
+    note: Auth is HTTP Basic with base64(access_key:secret_key); requests are synchronous HTTPS calls.
+  - url: https://api.reonomy.com/v2/docs/guides/search/
+    type: Documentation
+    note: Search is paginated via search_token re-requests, not streamed; no WebSocket.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE protocol surface exists for Reonomy. The Property
+    API is synchronous REST only, so no AsyncAPI document was authored and
+    the catalog models the REST surface via OpenAPI.

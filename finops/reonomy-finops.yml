@@ -1,0 +1,91 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Reonomy
+providerId: reonomy
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Commercial Real Estate
+- Property Data
+- Property Intelligence
+- Ownership
+- Skip Trace
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Reonomy Property API and data-solutions spend. Reonomy is a
+  sales-led enterprise data provider (an Altus Group company) with no public
+  metered rate card, so cost management centers on contract terms: licensed
+  detail types (basic, taxes, sales, mortgages, ownership, tenants,
+  foreclosure), bulk-feed volumes, and seat / record allotments. Usage is
+  best tracked by API calls and by which detail types and bulk records are
+  consumed against the negotiated agreement.
+notes: >-
+  No public pricing or usage-export schema was available; meters below are a
+  modeled view for internal allocation and are not reconciled against a
+  published Reonomy billing export. Verify against your enterprise agreement.
+sources:
+- https://www.reonomy.com/solutions/data-solutions/
+- https://api.reonomy.com/v2/docs/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Reonomy
+serviceCategory: Data and Analytics
+billingModel:
+  pricingCategory: Commitment-Based
+  billingFrequency: Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+focusColumns:
+  ServiceName: Reonomy Property API
+  ServiceCategory: Data and Analytics
+  ProviderName: Reonomy
+  PublisherName: Reonomy
+  InvoiceIssuerName: Reonomy
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Commitment-Based
+meters:
+- name: api_requests
+  description: Property API calls (search, resolve, property, bulk) made against the account.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - endpoint
+- name: detail_type_records
+  description: Property detail records returned, broken out by detail type consumed.
+  unit: records
+  aggregation: sum
+  dimensions:
+  - account
+  - detail_type
+- name: bulk_records
+  description: Records delivered via bulk property requests and bulk data feeds.
+  unit: records
+  aggregation: sum
+  dimensions:
+  - account
+  - feed
+principles:
+- name: Visibility
+  description: Track API calls and which detail types / bulk records are consumed against the contracted allotment.
+- name: Allocation
+  description: Tag API credentials per team or workflow; map detail-type and record usage to internal cost centers.
+- name: Optimization
+  description: Batch lookups via the bulk endpoint (up to 250 IDs); request only the detail types needed; use filter_pii where PII is not required.
+- name: Accountability
+  description: Assign an owner for the Reonomy agreement; review record and detail-type consumption against committed volume.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

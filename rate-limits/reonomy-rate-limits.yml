@@ -1,0 +1,58 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Reonomy
+providerId: reonomy
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Commercial Real Estate
+- Property Data
+- Property Intelligence
+- Ownership
+- Skip Trace
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Reonomy does not publish public, numeric API rate limits. Documented
+  constraints are functional batch limits rather than per-minute quotas: the
+  bulk property endpoint accepts up to 250 property IDs per request, and
+  search responses are paginated via a search_token. Any account-level
+  request quotas are governed by the customer's enterprise agreement and are
+  not published. Specific numeric limits are not reconciled in this artifact.
+notes: >-
+  Verify any per-account request quotas, concurrency limits, and feed
+  refresh cadences directly in your Reonomy enterprise agreement on
+  reconciliation.
+sources:
+- https://api.reonomy.com/v2/docs/api/reference/
+- https://api.reonomy.com/v2/docs/guides/property-details/
+- https://api.reonomy.com/v2/docs/guides/search/
+responseCodes:
+  throttled: 429
+limits:
+- name: Bulk Property IDs Per Request
+  scope: request
+  metric: property_ids
+  limit: 250
+  notes: The POST /property/bulk endpoint accepts up to 250 property IDs per call.
+- name: Search Page Size
+  scope: request
+  metric: items
+  limit: see provider documentation
+  notes: Search results are returned in pages; resubmit with the search_token to retrieve subsequent pages.
+- name: Account Request Quota
+  scope: account
+  metric: requests
+  limit: see enterprise agreement
+  notes: Any per-account request quotas are set by the customer's contract and are not published.
+policies:
+- name: Token Pagination
+  description: Search uses an opaque search_token rather than offset paging; pass it back to continue a result set.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

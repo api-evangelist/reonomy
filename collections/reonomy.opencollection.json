@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Reonomy Property API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "basic": {
+        "username": "{{accessKey}}",
+        "password": "{{secretKey}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search for properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.reonomy.com/v2/search/summaries",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"settings\": {\n    \"asset_category\": [\"multifamily\"],\n    \"building_area\": { \"min\": 100000 }\n  },\n  \"map_filters\": {\n    \"circles\": [ { \"lat\": 40.7128, \"lon\": -74.006, \"radius_m\": 100 } ]\n  },\n  \"limit\": 10\n}"
+            }
+          },
+          "docs": "Returns property IDs and coordinates for properties matching attribute and map filters. Page with the returned search_token."
+        },
+        {
+          "info": {
+            "name": "Retrieve property parcel shapes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.reonomy.com/v2/search/property-shapes",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"property_ids\": [\"<property_id>\"]\n}"
+            }
+          },
+          "docs": "Returns parcel shape geometry for the specified properties."
+        },
+        {
+          "info": {
+            "name": "Resolve a property to a Reonomy property ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.reonomy.com/v2/resolve/property",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"address\": \"1 World Trade Center\",\n  \"city\": \"New York\",\n  \"state_code\": \"NY\",\n  \"postal_code\": \"10007\"\n}"
+            }
+          },
+          "docs": "Locates a matching Reonomy property ID from an address, geolocation, or place name."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Property",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a single property",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.reonomy.com/v2/property/{{property_id}}?detail_type=basic&detail_type=ownership"
+          },
+          "docs": "Returns detailed information for a single Reonomy property. Repeat detail_type to request multiple sections."
+        },
+        {
+          "info": {
+            "name": "Get multiple properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.reonomy.com/v2/property/bulk",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"property_ids\": [\"<property_id_1>\", \"<property_id_2>\"],\n  \"detail_type\": [\"basic\", \"sales\", \"mortgages\"]\n}"
+            }
+          },
+          "docs": "Returns detailed records for up to 250 property IDs specified in the request body."
+        }
+      ]
+    }
+  ]
+}

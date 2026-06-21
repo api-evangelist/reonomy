@@ -1,0 +1,78 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Reonomy
+providerId: reonomy
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Commercial Real Estate
+- Property Data
+- Property Intelligence
+- Ownership
+- Skip Trace
+- Plans
+description: >-
+  Reonomy does not publish public, self-service API pricing. Access to the
+  Property API and bulk data feeds is sales-led: prospective customers
+  request access and credentials from Reonomy sales, and commercial terms
+  (volume, detail types, seats, data licensing) are negotiated per contract.
+  As an Altus Group company, Reonomy positions its API and data feeds as an
+  enterprise data-solutions offering rather than a metered developer product.
+notes: >-
+  No published rate card was available at the time of writing; all entries
+  below are documented as sales-led / contact-sales and are not reconciled
+  against a public pricing page. Verify terms directly with Reonomy sales.
+sources:
+- https://www.reonomy.com/solutions/data-solutions/
+- https://api.reonomy.com/v2/docs/guides/getting-started/
+- https://api.reonomy.com/v2/docs/
+plans:
+- id: reonomy-api-access
+  name: Property API Access
+  type: enterprise
+  description: >-
+    Authenticated access to the Reonomy Property API (search, resolve,
+    property detail, bulk). Credentials are provisioned by Reonomy sales.
+  entries:
+  - label: API Access
+    name: api_access
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: us
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Property Search
+  - name: Property Resolution
+  - name: Property Detail
+  - name: Bulk Property Detail
+- id: reonomy-data-feeds
+  name: Data Solutions / Bulk Data Feeds
+  type: enterprise
+  description: >-
+    Bulk data feeds and enterprise data licensing for property,
+    ownership, sales, debt, tenant, and contact data. Negotiated per
+    contract.
+  entries:
+  - label: Bulk Data Feed
+    name: bulk_data_feed
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: us
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Bulk Data Feeds
+  - name: Data Licensing
+  - name: Custom Detail Types
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

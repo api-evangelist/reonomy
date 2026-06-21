@@ -1,0 +1,130 @@
+{
+  "info": {
+    "name": "Reonomy Property API",
+    "description": "Reonomy Property API (v2) - commercial real-estate property search, resolution, and detail (basic, taxes, sales, mortgages, ownership, tenants, foreclosure). Authenticated with HTTP Basic Authentication using a base64-encoded access_key:secret_key token.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "basic",
+    "basic": [
+      { "key": "username", "value": "{{accessKey}}", "type": "string" },
+      { "key": "password", "value": "{{secretKey}}", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.reonomy.com/v2" },
+    { "key": "accessKey", "value": "" },
+    { "key": "secretKey", "value": "" },
+    { "key": "property_id", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Search",
+      "item": [
+        {
+          "name": "Search for properties",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/search/summaries",
+              "host": ["{{baseUrl}}"],
+              "path": ["search", "summaries"],
+              "query": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"settings\": {\n    \"asset_category\": [\"multifamily\"],\n    \"building_area\": { \"min\": 100000 }\n  },\n  \"map_filters\": {\n    \"circles\": [ { \"lat\": 40.7128, \"lon\": -74.006, \"radius_m\": 100 } ]\n  },\n  \"limit\": 10\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Returns property IDs and coordinates for properties matching attribute and map filters. Page through results by resubmitting with the returned search_token as a query parameter."
+          }
+        },
+        {
+          "name": "Retrieve property parcel shapes",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/search/property-shapes",
+              "host": ["{{baseUrl}}"],
+              "path": ["search", "property-shapes"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"property_ids\": [\"<property_id>\"]\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Returns parcel shape geometry for the specified properties."
+          }
+        },
+        {
+          "name": "Resolve a property to a Reonomy property ID",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/resolve/property",
+              "host": ["{{baseUrl}}"],
+              "path": ["resolve", "property"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"1 World Trade Center\",\n  \"city\": \"New York\",\n  \"state_code\": \"NY\",\n  \"postal_code\": \"10007\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Locates a matching Reonomy property ID from an address, geolocation, or place name."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Property",
+      "item": [
+        {
+          "name": "Get a single property",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/property/{{property_id}}?detail_type=basic&detail_type=ownership",
+              "host": ["{{baseUrl}}"],
+              "path": ["property", "{{property_id}}"],
+              "query": [
+                { "key": "detail_type", "value": "basic" },
+                { "key": "detail_type", "value": "ownership" }
+              ]
+            },
+            "description": "Returns detailed information for a single Reonomy property. Repeat the detail_type query parameter to request multiple sections (basic, taxes, sales, mortgages, ownership, tenants, foreclosure)."
+          }
+        },
+        {
+          "name": "Get multiple properties",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/property/bulk",
+              "host": ["{{baseUrl}}"],
+              "path": ["property", "bulk"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"property_ids\": [\"<property_id_1>\", \"<property_id_2>\"],\n  \"detail_type\": [\"basic\", \"sales\", \"mortgages\"]\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Returns detailed records for up to 250 property IDs specified in the request body."
+          }
+        }
+      ]
+    }
+  ]
+}
