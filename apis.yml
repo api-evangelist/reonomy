@@ -126,6 +126,10 @@ apis:
     is returned through the ownership and tenant detail types; a filter_pii option
     excludes personally identifiable fields when required.
 common:
+- type: DomainSecurity
+  url: security/reonomy-domain-security.yml
+- type: Authentication
+  url: authentication/reonomy-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/reonomy
 - type: LinkedIn

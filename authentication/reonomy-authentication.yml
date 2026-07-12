@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/reonomy-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic Authentication. The Authorization header carries a base64-encoded
+    access_key:secret_key access token issued by Reonomy.
+  sources:
+  - openapi/reonomy-openapi.yml
