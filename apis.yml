@@ -126,6 +126,8 @@ apis:
     is returned through the ownership and tenant detail types; a filter_pii option
     excludes personally identifiable fields when required.
 common:
+- type: AgenticAccess
+  url: agentic-access/reonomy-agentic-access.yml
 - type: DomainSecurity
   url: security/reonomy-domain-security.yml
 - type: Authentication
