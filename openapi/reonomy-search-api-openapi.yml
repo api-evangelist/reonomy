@@ -1,0 +1,262 @@
+openapi: 3.0.1
+info:
+  title: Reonomy Property Search API
+  description: 'The Reonomy Property API delivers commercial real-estate property intelligence for U.S. properties: attribute and map-based property search, address / geolocation resolution to a stable Reonomy property ID, and rich property detail records covering basic data, taxes, sales, mortgages, ownership, tenants, and foreclosure. All requests are authenticated with HTTP Basic Authentication using a base64-encoded access-key / secret-key pair. Access is provisioned by Reonomy sales.'
+  termsOfService: https://www.reonomy.com/terms-of-service
+  contact:
+    name: Reonomy
+    url: https://www.reonomy.com
+    email: sales@reonomy.com
+  version: '2.0'
+servers:
+- url: https://api.reonomy.com/v2
+  description: Reonomy Property API v2
+security:
+- basicAuth: []
+tags:
+- name: Search
+  description: Search and resolve commercial real-estate properties.
+paths:
+  /search/summaries:
+    post:
+      operationId: searchSummaries
+      tags:
+      - Search
+      summary: Search for properties
+      description: Returns property IDs and coordinates for properties matching the supplied attribute filters (settings) and map filters (circles, polygons, bounding box). Resubmit with the returned search_token to page through additional results.
+      parameters:
+      - name: search_token
+        in: query
+        required: false
+        description: Token returned by a prior search, used to retrieve the next page of results.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: Matching property summaries.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        '401':
+          description: Authentication failed.
+  /search/property-shapes:
+    post:
+      operationId: searchPropertyShapes
+      tags:
+      - Search
+      summary: Retrieve property parcel shapes
+      description: Returns parcel shape geometry for the specified properties or search criteria.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PropertyShapesRequest'
+      responses:
+        '200':
+          description: Parcel shape geometry.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Authentication failed.
+  /resolve/property:
+    post:
+      operationId: resolveProperty
+      tags:
+      - Search
+      summary: Resolve a property to a Reonomy property ID
+      description: Locates a matching Reonomy property ID from a supplied address, geolocation, or place name.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResolveRequest'
+      responses:
+        '200':
+          description: Resolved property reference(s).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResolveResponse'
+        '401':
+          description: Authentication failed.
+components:
+  schemas:
+    ResolveResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchSummaryItem'
+    PropertyShapesRequest:
+      type: object
+      properties:
+        property_ids:
+          type: array
+          items:
+            type: string
+    DateRange:
+      type: object
+      properties:
+        min:
+          type: string
+          format: date
+        max:
+          type: string
+          format: date
+        relative_min:
+          type: integer
+        relative_max:
+          type: integer
+    SearchResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchSummaryItem'
+        search_token:
+          type: string
+    SearchSettings:
+      type: object
+      description: Attribute filters applied to the property search.
+      properties:
+        asset_category:
+          type: array
+          items:
+            type: string
+        land_use_code_description:
+          type: array
+          items:
+            type: string
+        building_area:
+          $ref: '#/components/schemas/Range'
+        sales_price:
+          $ref: '#/components/schemas/Range'
+        master_update_time:
+          $ref: '#/components/schemas/DateRange'
+        sale_update_time:
+          $ref: '#/components/schemas/DateRange'
+        fips:
+          type: array
+          items:
+            type: string
+    SearchRequest:
+      type: object
+      properties:
+        settings:
+          $ref: '#/components/schemas/SearchSettings'
+        map_filters:
+          $ref: '#/components/schemas/MapFilters'
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sort'
+        limit:
+          type: integer
+          default: 10
+    MapFilters:
+      type: object
+      description: Geospatial filters applied to the property search.
+      properties:
+        circles:
+          type: array
+          items:
+            type: object
+            properties:
+              lat:
+                type: number
+                format: double
+              lon:
+                type: number
+                format: double
+              radius_m:
+                type: number
+        polygons:
+          type: array
+          items:
+            type: object
+            properties:
+              coordinates:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LatLon'
+        bounding_box:
+          type: object
+          properties:
+            top_left:
+              $ref: '#/components/schemas/LatLon'
+            bottom_right:
+              $ref: '#/components/schemas/LatLon'
+    LatLon:
+      type: object
+      properties:
+        lat:
+          type: number
+          format: double
+        lon:
+          type: number
+          format: double
+    Sort:
+      type: object
+      properties:
+        name:
+          type: string
+        order:
+          type: string
+          enum:
+          - asc
+          - desc
+    SearchSummaryItem:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Reonomy property ID.
+        location:
+          $ref: '#/components/schemas/LatLon'
+    Range:
+      type: object
+      properties:
+        min:
+          type: number
+        max:
+          type: number
+    ResolveRequest:
+      type: object
+      description: Address, geolocation, or place name used to resolve a property.
+      properties:
+        address:
+          type: string
+        city:
+          type: string
+        state_code:
+          type: string
+        postal_code:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        place_name:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication. The Authorization header carries a base64-encoded access_key:secret_key access token issued by Reonomy.
