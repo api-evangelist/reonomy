@@ -1,0 +1,511 @@
+openapi: 3.0.1
+info:
+  title: Reonomy Property API
+  description: >-
+    The Reonomy Property API delivers commercial real-estate property
+    intelligence for U.S. properties: attribute and map-based property search,
+    address / geolocation resolution to a stable Reonomy property ID, and rich
+    property detail records covering basic data, taxes, sales, mortgages,
+    ownership, tenants, and foreclosure. All requests are authenticated with
+    HTTP Basic Authentication using a base64-encoded access-key / secret-key
+    pair. Access is provisioned by Reonomy sales.
+  termsOfService: https://www.reonomy.com/terms-of-service
+  contact:
+    name: Reonomy
+    url: https://www.reonomy.com
+    email: sales@reonomy.com
+  version: '2.0'
+servers:
+  - url: https://api.reonomy.com/v2
+    description: Reonomy Property API v2
+security:
+  - basicAuth: []
+tags:
+  - name: Search
+    description: Search and resolve commercial real-estate properties.
+  - name: Property
+    description: Retrieve detailed property records by ID.
+paths:
+  /search/summaries:
+    post:
+      operationId: searchSummaries
+      tags:
+        - Search
+      summary: Search for properties
+      description: >-
+        Returns property IDs and coordinates for properties matching the
+        supplied attribute filters (settings) and map filters (circles,
+        polygons, bounding box). Resubmit with the returned search_token to
+        page through additional results.
+      parameters:
+        - name: search_token
+          in: query
+          required: false
+          description: Token returned by a prior search, used to retrieve the next page of results.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: Matching property summaries.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        '401':
+          description: Authentication failed.
+  /search/property-shapes:
+    post:
+      operationId: searchPropertyShapes
+      tags:
+        - Search
+      summary: Retrieve property parcel shapes
+      description: >-
+        Returns parcel shape geometry for the specified properties or search
+        criteria.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PropertyShapesRequest'
+      responses:
+        '200':
+          description: Parcel shape geometry.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Authentication failed.
+  /resolve/property:
+    post:
+      operationId: resolveProperty
+      tags:
+        - Search
+      summary: Resolve a property to a Reonomy property ID
+      description: >-
+        Locates a matching Reonomy property ID from a supplied address,
+        geolocation, or place name.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResolveRequest'
+      responses:
+        '200':
+          description: Resolved property reference(s).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResolveResponse'
+        '401':
+          description: Authentication failed.
+  /property/{property_id}:
+    get:
+      operationId: getProperty
+      tags:
+        - Property
+      summary: Get a single property
+      description: >-
+        Returns detailed information for a single Reonomy property. Use the
+        detail_type query parameter (repeatable) to select which detail
+        sections are returned.
+      parameters:
+        - name: property_id
+          in: path
+          required: true
+          description: The Reonomy property ID.
+          schema:
+            type: string
+        - name: detail_type
+          in: query
+          required: false
+          description: >-
+            Detail section to include in the response. May be repeated to
+            request multiple sections. Defaults to basic.
+          schema:
+            type: string
+            enum:
+              - basic
+              - taxes
+              - sales
+              - mortgages
+              - ownership
+              - tenants
+              - foreclosure
+        - name: filter_pii
+          in: query
+          required: false
+          description: When true, excludes fields tagged as personally identifiable information.
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Property detail record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Property'
+        '401':
+          description: Authentication failed.
+        '404':
+          description: Property not found.
+  /property/bulk:
+    post:
+      operationId: getPropertiesBulk
+      tags:
+        - Property
+      summary: Get multiple properties
+      description: >-
+        Returns detailed records for the property IDs specified in the request
+        body, up to 250 properties per call.
+      parameters:
+        - name: filter_pii
+          in: query
+          required: false
+          description: When true, excludes fields tagged as personally identifiable information.
+          schema:
+            type: boolean
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkRequest'
+      responses:
+        '200':
+          description: Property detail records.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Property'
+        '401':
+          description: Authentication failed.
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        HTTP Basic Authentication. The Authorization header carries a
+        base64-encoded access_key:secret_key access token issued by Reonomy.
+  schemas:
+    Range:
+      type: object
+      properties:
+        min:
+          type: number
+        max:
+          type: number
+    DateRange:
+      type: object
+      properties:
+        min:
+          type: string
+          format: date
+        max:
+          type: string
+          format: date
+        relative_min:
+          type: integer
+        relative_max:
+          type: integer
+    LatLon:
+      type: object
+      properties:
+        lat:
+          type: number
+          format: double
+        lon:
+          type: number
+          format: double
+    SearchSettings:
+      type: object
+      description: Attribute filters applied to the property search.
+      properties:
+        asset_category:
+          type: array
+          items:
+            type: string
+        land_use_code_description:
+          type: array
+          items:
+            type: string
+        building_area:
+          $ref: '#/components/schemas/Range'
+        sales_price:
+          $ref: '#/components/schemas/Range'
+        master_update_time:
+          $ref: '#/components/schemas/DateRange'
+        sale_update_time:
+          $ref: '#/components/schemas/DateRange'
+        fips:
+          type: array
+          items:
+            type: string
+    MapFilters:
+      type: object
+      description: Geospatial filters applied to the property search.
+      properties:
+        circles:
+          type: array
+          items:
+            type: object
+            properties:
+              lat:
+                type: number
+                format: double
+              lon:
+                type: number
+                format: double
+              radius_m:
+                type: number
+        polygons:
+          type: array
+          items:
+            type: object
+            properties:
+              coordinates:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LatLon'
+        bounding_box:
+          type: object
+          properties:
+            top_left:
+              $ref: '#/components/schemas/LatLon'
+            bottom_right:
+              $ref: '#/components/schemas/LatLon'
+    Sort:
+      type: object
+      properties:
+        name:
+          type: string
+        order:
+          type: string
+          enum:
+            - asc
+            - desc
+    SearchRequest:
+      type: object
+      properties:
+        settings:
+          $ref: '#/components/schemas/SearchSettings'
+        map_filters:
+          $ref: '#/components/schemas/MapFilters'
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sort'
+        limit:
+          type: integer
+          default: 10
+    SearchSummaryItem:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Reonomy property ID.
+        location:
+          $ref: '#/components/schemas/LatLon'
+    SearchResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchSummaryItem'
+        search_token:
+          type: string
+    PropertyShapesRequest:
+      type: object
+      properties:
+        property_ids:
+          type: array
+          items:
+            type: string
+    ResolveRequest:
+      type: object
+      description: Address, geolocation, or place name used to resolve a property.
+      properties:
+        address:
+          type: string
+        city:
+          type: string
+        state_code:
+          type: string
+        postal_code:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        place_name:
+          type: string
+    ResolveResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchSummaryItem'
+    BulkRequest:
+      type: object
+      properties:
+        property_ids:
+          type: array
+          maxItems: 250
+          items:
+            type: string
+        detail_type:
+          type: array
+          items:
+            type: string
+            enum:
+              - basic
+              - taxes
+              - sales
+              - mortgages
+              - ownership
+              - tenants
+              - foreclosure
+    Person:
+      type: object
+      properties:
+        display:
+          type: string
+        jobs:
+          type: array
+          items:
+            type: object
+        addresses:
+          type: array
+          items:
+            type: object
+        phones:
+          type: array
+          items:
+            type: string
+        emails:
+          type: array
+          items:
+            type: string
+    Company:
+      type: object
+      properties:
+        name:
+          type: string
+        parent_id:
+          type: string
+    Contact:
+      type: object
+      properties:
+        contact_type:
+          type: string
+        is_signatory:
+          type: boolean
+        match_score:
+          type: number
+        is_green_match:
+          type: boolean
+        persons:
+          type: array
+          items:
+            $ref: '#/components/schemas/Person'
+        company:
+          $ref: '#/components/schemas/Company'
+    Ownership:
+      type: object
+      properties:
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+    Mortgage:
+      type: object
+      properties:
+        borrower_name:
+          type: string
+        lender_name:
+          type: string
+        signatory:
+          type: string
+    Sale:
+      type: object
+      properties:
+        sale_amount:
+          type: number
+        sale_date:
+          type: string
+          format: date
+    Tenant:
+      type: object
+      properties:
+        name:
+          type: string
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+    Property:
+      type: object
+      description: A Reonomy property record. Detail sections are present per requested detail_type.
+      properties:
+        property_id:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state_code:
+          type: string
+        postal_code:
+          type: string
+        parcel_number:
+          type: string
+        block_id:
+          type: string
+          description: NYC properties only.
+        borough_id:
+          type: string
+          description: NYC properties only.
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        mortgages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Mortgage'
+        ownership:
+          $ref: '#/components/schemas/Ownership'
+        sales:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sale'
+        taxes:
+          type: object
+        tenants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tenant'
+        foreclosure:
+          type: object

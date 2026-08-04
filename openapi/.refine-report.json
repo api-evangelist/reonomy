@@ -1,0 +1,16 @@
+{
+  "provider": "reonomy",
+  "sources": [
+    "reonomy-property-api-openapi.yml",
+    "reonomy-search-api-openapi.yml"
+  ],
+  "outputs": [
+    "reonomy-property-api-openapi.yml",
+    "reonomy-search-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
