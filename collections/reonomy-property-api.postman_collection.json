@@ -1,0 +1,443 @@
+{
+  "item": [
+    {
+      "id": "37f67da5-ea10-4987-a41c-9000a0285e23",
+      "name": "Property",
+      "description": {
+        "content": "Retrieve detailed property records by ID.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2adb6b5c-7a64-4a94-b211-c487db67b7cf",
+          "name": "Get a single property",
+          "request": {
+            "name": "Get a single property",
+            "description": {
+              "content": "Returns detailed information for a single Reonomy property. Use the detail_type query parameter (repeatable) to select which detail sections are returned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "property",
+                ":property_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "detail_type",
+                  "value": "<string>",
+                  "description": "Detail section to include in the response. May be repeated to request multiple sections. Defaults to basic."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter_pii",
+                  "value": "<boolean>",
+                  "description": "When true, excludes fields tagged as personally identifiable information."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "property_id",
+                  "description": "(Required) The Reonomy property ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e49312d1-aa11-4169-b232-d2155d3fb08a",
+              "name": "Property detail record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "property",
+                    ":property_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "detail_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter_pii",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "property_id",
+                      "description": "(Required) The Reonomy property ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"property_id\": \"string\",\n  \"address\": \"string\",\n  \"city\": \"string\",\n  \"state_code\": \"string\",\n  \"postal_code\": \"string\",\n  \"parcel_number\": \"string\",\n  \"block_id\": \"string\",\n  \"borough_id\": \"string\",\n  \"latitude\": 5103.343365042897,\n  \"longitude\": 1130.4433843661532,\n  \"mortgages\": [\n    {\n      \"borrower_name\": \"string\",\n      \"lender_name\": \"string\",\n      \"signatory\": \"string\"\n    },\n    {\n      \"borrower_name\": \"string\",\n      \"lender_name\": \"string\",\n      \"signatory\": \"string\"\n    }\n  ],\n  \"ownership\": {\n    \"contacts\": [\n      {\n        \"contact_type\": \"string\",\n        \"is_signatory\": false,\n        \"match_score\": 1574.7459775782347,\n        \"is_green_match\": false,\n        \"persons\": [\n          {\n            \"display\": \"string\",\n            \"jobs\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"addresses\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"phones\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"emails\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"display\": \"string\",\n            \"jobs\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"addresses\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"phones\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"emails\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"company\": {\n          \"name\": \"string\",\n          \"parent_id\": \"string\"\n        }\n      },\n      {\n        \"contact_type\": \"string\",\n        \"is_signatory\": false,\n        \"match_score\": 5311.982682615049,\n        \"is_green_match\": true,\n        \"persons\": [\n          {\n            \"display\": \"string\",\n            \"jobs\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"addresses\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"phones\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"emails\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"display\": \"string\",\n            \"jobs\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"addresses\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"phones\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"emails\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"company\": {\n          \"name\": \"string\",\n          \"parent_id\": \"string\"\n        }\n      }\n    ]\n  },\n  \"sales\": [\n    {\n      \"sale_amount\": 486.70300728165137,\n      \"sale_date\": \"1990-08-17\"\n    },\n    {\n      \"sale_amount\": 4106.804771854211,\n      \"sale_date\": \"1973-03-26\"\n    }\n  ],\n  \"taxes\": {},\n  \"tenants\": [\n    {\n      \"name\": \"string\",\n      \"contacts\": [\n        {\n          \"contact_type\": \"string\",\n          \"is_signatory\": true,\n          \"match_score\": 7886.44855959359,\n          \"is_green_match\": true,\n          \"persons\": [\n            {\n              \"display\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"jobs\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"addresses\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"phones\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"emails\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"display\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"jobs\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"addresses\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"phones\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"emails\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"company\": {\n            \"name\": \"string\",\n            \"parent_id\": \"string\"\n          }\n        },\n        {\n          \"contact_type\": \"string\",\n          \"is_signatory\": true,\n          \"match_score\": 8722.983837695134,\n          \"is_green_match\": false,\n          \"persons\": [\n            {\n              \"display\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"jobs\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"addresses\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"phones\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"emails\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"display\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"jobs\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"addresses\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"phones\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"emails\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"company\": {\n            \"name\": \"string\",\n            \"parent_id\": \"string\"\n          }\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"contacts\": [\n        {\n          \"contact_type\": \"string\",\n          \"is_signatory\": true,\n          \"match_score\": 3827.7805355518735,\n          \"is_green_match\": true,\n          \"persons\": [\n            {\n              \"display\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"jobs\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"addresses\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"phones\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"emails\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"display\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"jobs\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"addresses\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"phones\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"emails\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"company\": {\n            \"name\": \"string\",\n            \"parent_id\": \"string\"\n          }\n        },\n        {\n          \"contact_type\": \"string\",\n          \"is_signatory\": false,\n          \"match_score\": 4227.834976044269,\n          \"is_green_match\": false,\n          \"persons\": [\n            {\n              \"display\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"jobs\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"addresses\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"phones\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"emails\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"display\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"jobs\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"addresses\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"phones\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"emails\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"company\": {\n            \"name\": \"string\",\n            \"parent_id\": \"string\"\n          }\n        }\n      ]\n    }\n  ],\n  \"foreclosure\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77c07f24-41c1-4d59-a900-7f69373d2958",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "property",
+                    ":property_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "detail_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter_pii",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "property_id",
+                      "description": "(Required) The Reonomy property ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c6ae69f7-5cee-466d-a104-12997c5c77c9",
+              "name": "Property not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "property",
+                    ":property_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "detail_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter_pii",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "property_id",
+                      "description": "(Required) The Reonomy property ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8b68e63-09d8-44b2-a229-26b031706bc7",
+          "name": "Get multiple properties",
+          "request": {
+            "name": "Get multiple properties",
+            "description": {
+              "content": "Returns detailed records for the property IDs specified in the request body, up to 250 properties per call.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "property",
+                "bulk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter_pii",
+                  "value": "<boolean>",
+                  "description": "When true, excludes fields tagged as personally identifiable information."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"property_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"detail_type\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5ff3ede6-6b46-4294-8c09-81757b511020",
+              "name": "Property detail records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "property",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter_pii",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"property_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"detail_type\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"property_id\": \"string\",\n      \"address\": \"string\",\n      \"city\": \"string\",\n      \"state_code\": \"string\",\n      \"postal_code\": \"string\",\n      \"parcel_number\": \"string\",\n      \"block_id\": \"string\",\n      \"borough_id\": \"string\",\n      \"latitude\": 7268.283619147144,\n      \"longitude\": 419.8279024812746,\n      \"mortgages\": [\n        {\n          \"borrower_name\": \"string\",\n          \"lender_name\": \"string\",\n          \"signatory\": \"string\"\n        },\n        {\n          \"borrower_name\": \"string\",\n          \"lender_name\": \"string\",\n          \"signatory\": \"string\"\n        }\n      ],\n      \"ownership\": {\n        \"contacts\": [\n          {\n            \"contact_type\": \"string\",\n            \"is_signatory\": false,\n            \"match_score\": 8879.042607703235,\n            \"is_green_match\": true,\n            \"persons\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"company\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"contact_type\": \"string\",\n            \"is_signatory\": false,\n            \"match_score\": 7576.982072597918,\n            \"is_green_match\": true,\n            \"persons\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"company\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"sales\": [\n        {\n          \"sale_amount\": 8229.345616593599,\n          \"sale_date\": \"2001-10-13\"\n        },\n        {\n          \"sale_amount\": 7882.899413602799,\n          \"sale_date\": \"1981-01-27\"\n        }\n      ],\n      \"taxes\": {},\n      \"tenants\": [\n        {\n          \"name\": \"string\",\n          \"contacts\": [\n            {\n              \"contact_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"is_signatory\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"match_score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"is_green_match\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"persons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"company\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"contact_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"is_signatory\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"match_score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"is_green_match\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"persons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"company\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"contacts\": [\n            {\n              \"contact_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"is_signatory\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"match_score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"is_green_match\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"persons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"company\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"contact_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"is_signatory\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"match_score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"is_green_match\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"persons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"company\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"foreclosure\": {}\n    },\n    {\n      \"property_id\": \"string\",\n      \"address\": \"string\",\n      \"city\": \"string\",\n      \"state_code\": \"string\",\n      \"postal_code\": \"string\",\n      \"parcel_number\": \"string\",\n      \"block_id\": \"string\",\n      \"borough_id\": \"string\",\n      \"latitude\": 5279.525091353462,\n      \"longitude\": 4973.068198264462,\n      \"mortgages\": [\n        {\n          \"borrower_name\": \"string\",\n          \"lender_name\": \"string\",\n          \"signatory\": \"string\"\n        },\n        {\n          \"borrower_name\": \"string\",\n          \"lender_name\": \"string\",\n          \"signatory\": \"string\"\n        }\n      ],\n      \"ownership\": {\n        \"contacts\": [\n          {\n            \"contact_type\": \"string\",\n            \"is_signatory\": false,\n            \"match_score\": 7560.379843750502,\n            \"is_green_match\": false,\n            \"persons\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"company\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"contact_type\": \"string\",\n            \"is_signatory\": true,\n            \"match_score\": 62.184466738094414,\n            \"is_green_match\": true,\n            \"persons\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"company\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"sales\": [\n        {\n          \"sale_amount\": 7982.093746348674,\n          \"sale_date\": \"2011-11-21\"\n        },\n        {\n          \"sale_amount\": 1912.094809394288,\n          \"sale_date\": \"2012-02-09\"\n        }\n      ],\n      \"taxes\": {},\n      \"tenants\": [\n        {\n          \"name\": \"string\",\n          \"contacts\": [\n            {\n              \"contact_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"is_signatory\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"match_score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"is_green_match\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"persons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"company\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"contact_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"is_signatory\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"match_score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"is_green_match\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"persons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"company\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"contacts\": [\n            {\n              \"contact_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"is_signatory\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"match_score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"is_green_match\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"persons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"company\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"contact_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"is_signatory\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"match_score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"is_green_match\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"persons\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"company\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"foreclosure\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85d8bbc8-4935-4127-ab05-c1243d268f0f",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "property",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter_pii",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"property_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"detail_type\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.reonomy.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bc034e31-2292-49f3-9466-36ea8b83a18c",
+    "name": "Reonomy Property API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Reonomy Property API delivers commercial real-estate property intelligence for U.S. properties: attribute and map-based property search, address / geolocation resolution to a stable Reonomy property ID, and rich property detail records covering basic data, taxes, sales, mortgages, ownership, tenants, and foreclosure. All requests are authenticated with HTTP Basic Authentication using a base64-encoded access-key / secret-key pair. Access is provisioned by Reonomy sales.\n\nContact Support:\n Name: Reonomy\n Email: sales@reonomy.com",
+      "type": "text/plain"
+    }
+  }
+}

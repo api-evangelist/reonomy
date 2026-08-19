@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Reonomy Property Search API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search for properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.reonomy.com/v2/search/summaries",
+            "params": [
+              {
+                "name": "search_token",
+                "value": "",
+                "type": "query",
+                "description": "Token returned by a prior search, used to retrieve the next page of results."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns property IDs and coordinates for properties matching the supplied attribute filters (settings) and map filters (circles, polygons, bounding box). Resubmit with the returned search_token to page through additional results."
+        },
+        {
+          "info": {
+            "name": "Retrieve property parcel shapes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.reonomy.com/v2/search/property-shapes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns parcel shape geometry for the specified properties or search criteria."
+        },
+        {
+          "info": {
+            "name": "Resolve a property to a Reonomy property ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.reonomy.com/v2/resolve/property",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Locates a matching Reonomy property ID from a supplied address, geolocation, or place name."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

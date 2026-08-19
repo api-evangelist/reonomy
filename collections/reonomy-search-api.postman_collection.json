@@ -1,0 +1,509 @@
+{
+  "item": [
+    {
+      "id": "9f000609-25fd-4ece-a4a2-78389ee91a9a",
+      "name": "Search",
+      "description": {
+        "content": "Search and resolve commercial real-estate properties.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "28ca2357-29c0-4818-ac5f-c7dbca620f5f",
+          "name": "Search for properties",
+          "request": {
+            "name": "Search for properties",
+            "description": {
+              "content": "Returns property IDs and coordinates for properties matching the supplied attribute filters (settings) and map filters (circles, polygons, bounding box). Resubmit with the returned search_token to page through additional results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search",
+                "summaries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search_token",
+                  "value": "<string>",
+                  "description": "Token returned by a prior search, used to retrieve the next page of results."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"settings\": {\n    \"asset_category\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"land_use_code_description\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"building_area\": {\n      \"min\": \"<number>\",\n      \"max\": \"<number>\"\n    },\n    \"sales_price\": {\n      \"min\": \"<number>\",\n      \"max\": \"<number>\"\n    },\n    \"master_update_time\": {\n      \"min\": \"<date>\",\n      \"max\": \"<date>\",\n      \"relative_min\": \"<integer>\",\n      \"relative_max\": \"<integer>\"\n    },\n    \"sale_update_time\": {\n      \"min\": \"<date>\",\n      \"max\": \"<date>\",\n      \"relative_min\": \"<integer>\",\n      \"relative_max\": \"<integer>\"\n    },\n    \"fips\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"map_filters\": {\n    \"circles\": [\n      {\n        \"lat\": \"<double>\",\n        \"lon\": \"<double>\",\n        \"radius_m\": \"<number>\"\n      },\n      {\n        \"lat\": \"<double>\",\n        \"lon\": \"<double>\",\n        \"radius_m\": \"<number>\"\n      }\n    ],\n    \"polygons\": [\n      {\n        \"coordinates\": [\n          {\n            \"lat\": \"<double>\",\n            \"lon\": \"<double>\"\n          },\n          {\n            \"lat\": \"<double>\",\n            \"lon\": \"<double>\"\n          }\n        ]\n      },\n      {\n        \"coordinates\": [\n          {\n            \"lat\": \"<double>\",\n            \"lon\": \"<double>\"\n          },\n          {\n            \"lat\": \"<double>\",\n            \"lon\": \"<double>\"\n          }\n        ]\n      }\n    ],\n    \"bounding_box\": {\n      \"top_left\": {\n        \"lat\": \"<double>\",\n        \"lon\": \"<double>\"\n      },\n      \"bottom_right\": {\n        \"lat\": \"<double>\",\n        \"lon\": \"<double>\"\n      }\n    }\n  },\n  \"sort\": [\n    {\n      \"name\": \"<string>\",\n      \"order\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"order\": \"<string>\"\n    }\n  ],\n  \"limit\": 10\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cdfc7c99-9c38-4c1c-a8b2-292c01673729",
+              "name": "Matching property summaries.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"settings\": {\n    \"asset_category\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"land_use_code_description\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"building_area\": {\n      \"min\": \"<number>\",\n      \"max\": \"<number>\"\n    },\n    \"sales_price\": {\n      \"min\": \"<number>\",\n      \"max\": \"<number>\"\n    },\n    \"master_update_time\": {\n      \"min\": \"<date>\",\n      \"max\": \"<date>\",\n      \"relative_min\": \"<integer>\",\n      \"relative_max\": \"<integer>\"\n    },\n    \"sale_update_time\": {\n      \"min\": \"<date>\",\n      \"max\": \"<date>\",\n      \"relative_min\": \"<integer>\",\n      \"relative_max\": \"<integer>\"\n    },\n    \"fips\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"map_filters\": {\n    \"circles\": [\n      {\n        \"lat\": \"<double>\",\n        \"lon\": \"<double>\",\n        \"radius_m\": \"<number>\"\n      },\n      {\n        \"lat\": \"<double>\",\n        \"lon\": \"<double>\",\n        \"radius_m\": \"<number>\"\n      }\n    ],\n    \"polygons\": [\n      {\n        \"coordinates\": [\n          {\n            \"lat\": \"<double>\",\n            \"lon\": \"<double>\"\n          },\n          {\n            \"lat\": \"<double>\",\n            \"lon\": \"<double>\"\n          }\n        ]\n      },\n      {\n        \"coordinates\": [\n          {\n            \"lat\": \"<double>\",\n            \"lon\": \"<double>\"\n          },\n          {\n            \"lat\": \"<double>\",\n            \"lon\": \"<double>\"\n          }\n        ]\n      }\n    ],\n    \"bounding_box\": {\n      \"top_left\": {\n        \"lat\": \"<double>\",\n        \"lon\": \"<double>\"\n      },\n      \"bottom_right\": {\n        \"lat\": \"<double>\",\n        \"lon\": \"<double>\"\n      }\n    }\n  },\n  \"sort\": [\n    {\n      \"name\": \"<string>\",\n      \"order\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"order\": \"<string>\"\n    }\n  ],\n  \"limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 7742,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"location\": {\n        \"lat\": \"<double>\",\n        \"lon\": \"<double>\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"location\": {\n        \"lat\": \"<double>\",\n        \"lon\": \"<double>\"\n      }\n    }\n  ],\n  \"search_token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59a9a94a-55d9-4cd3-9737-07ed69c2f38f",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"settings\": {\n    \"asset_category\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"land_use_code_description\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"building_area\": {\n      \"min\": \"<number>\",\n      \"max\": \"<number>\"\n    },\n    \"sales_price\": {\n      \"min\": \"<number>\",\n      \"max\": \"<number>\"\n    },\n    \"master_update_time\": {\n      \"min\": \"<date>\",\n      \"max\": \"<date>\",\n      \"relative_min\": \"<integer>\",\n      \"relative_max\": \"<integer>\"\n    },\n    \"sale_update_time\": {\n      \"min\": \"<date>\",\n      \"max\": \"<date>\",\n      \"relative_min\": \"<integer>\",\n      \"relative_max\": \"<integer>\"\n    },\n    \"fips\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"map_filters\": {\n    \"circles\": [\n      {\n        \"lat\": \"<double>\",\n        \"lon\": \"<double>\",\n        \"radius_m\": \"<number>\"\n      },\n      {\n        \"lat\": \"<double>\",\n        \"lon\": \"<double>\",\n        \"radius_m\": \"<number>\"\n      }\n    ],\n    \"polygons\": [\n      {\n        \"coordinates\": [\n          {\n            \"lat\": \"<double>\",\n            \"lon\": \"<double>\"\n          },\n          {\n            \"lat\": \"<double>\",\n            \"lon\": \"<double>\"\n          }\n        ]\n      },\n      {\n        \"coordinates\": [\n          {\n            \"lat\": \"<double>\",\n            \"lon\": \"<double>\"\n          },\n          {\n            \"lat\": \"<double>\",\n            \"lon\": \"<double>\"\n          }\n        ]\n      }\n    ],\n    \"bounding_box\": {\n      \"top_left\": {\n        \"lat\": \"<double>\",\n        \"lon\": \"<double>\"\n      },\n      \"bottom_right\": {\n        \"lat\": \"<double>\",\n        \"lon\": \"<double>\"\n      }\n    }\n  },\n  \"sort\": [\n    {\n      \"name\": \"<string>\",\n      \"order\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"order\": \"<string>\"\n    }\n  ],\n  \"limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6c8e5dd5-386c-4a65-8e7a-50850b29aa98",
+          "name": "Retrieve property parcel shapes",
+          "request": {
+            "name": "Retrieve property parcel shapes",
+            "description": {
+              "content": "Returns parcel shape geometry for the specified properties or search criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search",
+                "property-shapes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"property_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cc28cd20-1045-4e46-8319-3a2bfa0f44d3",
+              "name": "Parcel shape geometry.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "property-shapes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"property_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c311acd-272a-4b1c-a363-29432d22276a",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "property-shapes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"property_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e64fb5a-ece3-4f77-8e31-525793718e34",
+          "name": "Resolve a property to a Reonomy property ID",
+          "request": {
+            "name": "Resolve a property to a Reonomy property ID",
+            "description": {
+              "content": "Locates a matching Reonomy property ID from a supplied address, geolocation, or place name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resolve",
+                "property"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state_code\": \"<string>\",\n  \"postal_code\": \"<string>\",\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"place_name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "167839c0-c82a-4df3-af3a-cde5f9f69a29",
+              "name": "Resolved property reference(s).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resolve",
+                    "property"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state_code\": \"<string>\",\n  \"postal_code\": \"<string>\",\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"place_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"location\": {\n        \"lat\": \"<double>\",\n        \"lon\": \"<double>\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"location\": {\n        \"lat\": \"<double>\",\n        \"lon\": \"<double>\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46c002d0-4d06-4f5c-b8c8-5fa9e5419b10",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resolve",
+                    "property"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state_code\": \"<string>\",\n  \"postal_code\": \"<string>\",\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"place_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.reonomy.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d8483d02-975a-4c43-9336-d241cce28c3a",
+    "name": "Reonomy Property Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Reonomy Property API delivers commercial real-estate property intelligence for U.S. properties: attribute and map-based property search, address / geolocation resolution to a stable Reonomy property ID, and rich property detail records covering basic data, taxes, sales, mortgages, ownership, tenants, and foreclosure. All requests are authenticated with HTTP Basic Authentication using a base64-encoded access-key / secret-key pair. Access is provisioned by Reonomy sales.\n\nContact Support:\n Name: Reonomy\n Email: sales@reonomy.com",
+      "type": "text/plain"
+    }
+  }
+}

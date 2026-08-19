@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Reonomy Property API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Property",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a single property",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.reonomy.com/v2/property/:property_id",
+            "params": [
+              {
+                "name": "property_id",
+                "value": "",
+                "type": "path",
+                "description": "The Reonomy property ID."
+              },
+              {
+                "name": "detail_type",
+                "value": "",
+                "type": "query",
+                "description": "Detail section to include in the response. May be repeated to request multiple sections. Defaults to basic."
+              },
+              {
+                "name": "filter_pii",
+                "value": "",
+                "type": "query",
+                "description": "When true, excludes fields tagged as personally identifiable information."
+              }
+            ]
+          },
+          "docs": "Returns detailed information for a single Reonomy property. Use the detail_type query parameter (repeatable) to select which detail sections are returned."
+        },
+        {
+          "info": {
+            "name": "Get multiple properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.reonomy.com/v2/property/bulk",
+            "params": [
+              {
+                "name": "filter_pii",
+                "value": "",
+                "type": "query",
+                "description": "When true, excludes fields tagged as personally identifiable information."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns detailed records for the property IDs specified in the request body, up to 250 properties per call."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
