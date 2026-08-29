@@ -7,6 +7,18 @@ description: Reonomy (an Altus Group company) is a commercial real-estate proper
   sales and debt, tax, tenant, and contact / skip-trace data across U.S. commercial
   real estate. The API resolves addresses to a stable Reonomy property ID and returns
   rich detail records keyed by that ID.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
