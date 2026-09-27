@@ -98,23 +98,6 @@ paths:
           description: Authentication failed.
 components:
   schemas:
-    Mortgage:
-      type: object
-      properties:
-        borrower_name:
-          type: string
-        lender_name:
-          type: string
-        signatory:
-          type: string
-    Sale:
-      type: object
-      properties:
-        sale_amount:
-          type: number
-        sale_date:
-          type: string
-          format: date
     Tenant:
       type: object
       properties:
@@ -124,23 +107,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Contact'
-    Contact:
-      type: object
-      properties:
-        contact_type:
-          type: string
-        is_signatory:
-          type: boolean
-        match_score:
-          type: number
-        is_green_match:
-          type: boolean
-        persons:
-          type: array
-          items:
-            $ref: '#/components/schemas/Person'
-        company:
-          $ref: '#/components/schemas/Company'
     Property:
       type: object
       description: A Reonomy property record. Detail sections are present per requested detail_type.
@@ -187,13 +153,6 @@ components:
             $ref: '#/components/schemas/Tenant'
         foreclosure:
           type: object
-    Ownership:
-      type: object
-      properties:
-        contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
     BulkRequest:
       type: object
       properties:
@@ -214,6 +173,38 @@ components:
             - ownership
             - tenants
             - foreclosure
+    Sale:
+      type: object
+      properties:
+        sale_amount:
+          type: number
+        sale_date:
+          type: string
+          format: date
+    Company:
+      type: object
+      properties:
+        name:
+          type: string
+        parent_id:
+          type: string
+    Contact:
+      type: object
+      properties:
+        contact_type:
+          type: string
+        is_signatory:
+          type: boolean
+        match_score:
+          type: number
+        is_green_match:
+          type: boolean
+        persons:
+          type: array
+          items:
+            $ref: '#/components/schemas/Person'
+        company:
+          $ref: '#/components/schemas/Company'
     Person:
       type: object
       properties:
@@ -235,12 +226,21 @@ components:
           type: array
           items:
             type: string
-    Company:
+    Ownership:
       type: object
       properties:
-        name:
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+    Mortgage:
+      type: object
+      properties:
+        borrower_name:
           type: string
-        parent_id:
+        lender_name:
+          type: string
+        signatory:
           type: string
   securitySchemes:
     basicAuth:

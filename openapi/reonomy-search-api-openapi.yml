@@ -92,27 +92,47 @@ paths:
           description: Authentication failed.
 components:
   schemas:
-    Range:
+    PropertyShapesRequest:
       type: object
       properties:
-        min:
-          type: number
-        max:
-          type: number
-    SearchRequest:
-      type: object
-      properties:
-        settings:
-          $ref: '#/components/schemas/SearchSettings'
-        map_filters:
-          $ref: '#/components/schemas/MapFilters'
-        sort:
+        property_ids:
           type: array
           items:
-            $ref: '#/components/schemas/Sort'
-        limit:
-          type: integer
-          default: 10
+            type: string
+    Sort:
+      type: object
+      properties:
+        name:
+          type: string
+        order:
+          type: string
+          enum:
+          - asc
+          - desc
+    SearchSummaryItem:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Reonomy property ID.
+        location:
+          $ref: '#/components/schemas/LatLon'
+    LatLon:
+      type: object
+      properties:
+        lat:
+          type: number
+          format: double
+        lon:
+          type: number
+          format: double
+    ResolveResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchSummaryItem'
     ResolveRequest:
       type: object
       description: Address, geolocation, or place name used to resolve a property.
@@ -133,16 +153,13 @@ components:
           format: double
         place_name:
           type: string
-    Sort:
+    Range:
       type: object
       properties:
-        name:
-          type: string
-        order:
-          type: string
-          enum:
-          - asc
-          - desc
+        min:
+          type: number
+        max:
+          type: number
     SearchSettings:
       type: object
       description: Attribute filters applied to the property search.
@@ -167,6 +184,44 @@ components:
           type: array
           items:
             type: string
+    DateRange:
+      type: object
+      properties:
+        min:
+          type: string
+          format: date
+        max:
+          type: string
+          format: date
+        relative_min:
+          type: integer
+        relative_max:
+          type: integer
+    SearchRequest:
+      type: object
+      properties:
+        settings:
+          $ref: '#/components/schemas/SearchSettings'
+        map_filters:
+          $ref: '#/components/schemas/MapFilters'
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sort'
+        limit:
+          type: integer
+          default: 10
+    SearchResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchSummaryItem'
+        search_token:
+          type: string
     MapFilters:
       type: object
       description: Geospatial filters applied to the property search.
@@ -200,61 +255,6 @@ components:
               $ref: '#/components/schemas/LatLon'
             bottom_right:
               $ref: '#/components/schemas/LatLon'
-    LatLon:
-      type: object
-      properties:
-        lat:
-          type: number
-          format: double
-        lon:
-          type: number
-          format: double
-    ResolveResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/SearchSummaryItem'
-    SearchResponse:
-      type: object
-      properties:
-        count:
-          type: integer
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/SearchSummaryItem'
-        search_token:
-          type: string
-    SearchSummaryItem:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The Reonomy property ID.
-        location:
-          $ref: '#/components/schemas/LatLon'
-    DateRange:
-      type: object
-      properties:
-        min:
-          type: string
-          format: date
-        max:
-          type: string
-          format: date
-        relative_min:
-          type: integer
-        relative_max:
-          type: integer
-    PropertyShapesRequest:
-      type: object
-      properties:
-        property_ids:
-          type: array
-          items:
-            type: string
   securitySchemes:
     basicAuth:
       type: http
