@@ -98,15 +98,95 @@ paths:
           description: Authentication failed.
 components:
   schemas:
-    Tenant:
+    Ownership:
       type: object
       properties:
-        name:
-          type: string
         contacts:
           type: array
           items:
             $ref: '#/components/schemas/Contact'
+    Sale:
+      type: object
+      properties:
+        sale_amount:
+          type: number
+        sale_date:
+          type: string
+          format: date
+    Mortgage:
+      type: object
+      properties:
+        borrower_name:
+          type: string
+        lender_name:
+          type: string
+        signatory:
+          type: string
+    BulkRequest:
+      type: object
+      properties:
+        property_ids:
+          type: array
+          maxItems: 250
+          items:
+            type: string
+        detail_type:
+          type: array
+          items:
+            type: string
+            enum:
+            - basic
+            - taxes
+            - sales
+            - mortgages
+            - ownership
+            - tenants
+            - foreclosure
+    Contact:
+      type: object
+      properties:
+        contact_type:
+          type: string
+        is_signatory:
+          type: boolean
+        match_score:
+          type: number
+        is_green_match:
+          type: boolean
+        persons:
+          type: array
+          items:
+            $ref: '#/components/schemas/Person'
+        company:
+          $ref: '#/components/schemas/Company'
+    Company:
+      type: object
+      properties:
+        name:
+          type: string
+        parent_id:
+          type: string
+    Person:
+      type: object
+      properties:
+        display:
+          type: string
+        jobs:
+          type: array
+          items:
+            type: object
+        addresses:
+          type: array
+          items:
+            type: object
+        phones:
+          type: array
+          items:
+            type: string
+        emails:
+          type: array
+          items:
+            type: string
     Property:
       type: object
       description: A Reonomy property record. Detail sections are present per requested detail_type.
@@ -153,95 +233,15 @@ components:
             $ref: '#/components/schemas/Tenant'
         foreclosure:
           type: object
-    BulkRequest:
-      type: object
-      properties:
-        property_ids:
-          type: array
-          maxItems: 250
-          items:
-            type: string
-        detail_type:
-          type: array
-          items:
-            type: string
-            enum:
-            - basic
-            - taxes
-            - sales
-            - mortgages
-            - ownership
-            - tenants
-            - foreclosure
-    Sale:
-      type: object
-      properties:
-        sale_amount:
-          type: number
-        sale_date:
-          type: string
-          format: date
-    Company:
+    Tenant:
       type: object
       properties:
         name:
           type: string
-        parent_id:
-          type: string
-    Contact:
-      type: object
-      properties:
-        contact_type:
-          type: string
-        is_signatory:
-          type: boolean
-        match_score:
-          type: number
-        is_green_match:
-          type: boolean
-        persons:
-          type: array
-          items:
-            $ref: '#/components/schemas/Person'
-        company:
-          $ref: '#/components/schemas/Company'
-    Person:
-      type: object
-      properties:
-        display:
-          type: string
-        jobs:
-          type: array
-          items:
-            type: object
-        addresses:
-          type: array
-          items:
-            type: object
-        phones:
-          type: array
-          items:
-            type: string
-        emails:
-          type: array
-          items:
-            type: string
-    Ownership:
-      type: object
-      properties:
         contacts:
           type: array
           items:
             $ref: '#/components/schemas/Contact'
-    Mortgage:
-      type: object
-      properties:
-        borrower_name:
-          type: string
-        lender_name:
-          type: string
-        signatory:
-          type: string
   securitySchemes:
     basicAuth:
       type: http
