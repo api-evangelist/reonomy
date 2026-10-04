@@ -98,30 +98,6 @@ paths:
           description: Authentication failed.
 components:
   schemas:
-    Ownership:
-      type: object
-      properties:
-        contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
-    Sale:
-      type: object
-      properties:
-        sale_amount:
-          type: number
-        sale_date:
-          type: string
-          format: date
-    Mortgage:
-      type: object
-      properties:
-        borrower_name:
-          type: string
-        lender_name:
-          type: string
-        signatory:
-          type: string
     BulkRequest:
       type: object
       properties:
@@ -159,13 +135,15 @@ components:
             $ref: '#/components/schemas/Person'
         company:
           $ref: '#/components/schemas/Company'
-    Company:
+    Tenant:
       type: object
       properties:
         name:
           type: string
-        parent_id:
-          type: string
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
     Person:
       type: object
       properties:
@@ -187,6 +165,21 @@ components:
           type: array
           items:
             type: string
+    Ownership:
+      type: object
+      properties:
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+    Sale:
+      type: object
+      properties:
+        sale_amount:
+          type: number
+        sale_date:
+          type: string
+          format: date
     Property:
       type: object
       description: A Reonomy property record. Detail sections are present per requested detail_type.
@@ -233,15 +226,22 @@ components:
             $ref: '#/components/schemas/Tenant'
         foreclosure:
           type: object
-    Tenant:
+    Mortgage:
+      type: object
+      properties:
+        borrower_name:
+          type: string
+        lender_name:
+          type: string
+        signatory:
+          type: string
+    Company:
       type: object
       properties:
         name:
           type: string
-        contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
+        parent_id:
+          type: string
   securitySchemes:
     basicAuth:
       type: http

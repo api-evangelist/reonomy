@@ -92,13 +92,30 @@ paths:
           description: Authentication failed.
 components:
   schemas:
-    ResolveResponse:
+    SearchSettings:
       type: object
+      description: Attribute filters applied to the property search.
       properties:
-        items:
+        asset_category:
           type: array
           items:
-            $ref: '#/components/schemas/SearchSummaryItem'
+            type: string
+        land_use_code_description:
+          type: array
+          items:
+            type: string
+        building_area:
+          $ref: '#/components/schemas/Range'
+        sales_price:
+          $ref: '#/components/schemas/Range'
+        master_update_time:
+          $ref: '#/components/schemas/DateRange'
+        sale_update_time:
+          $ref: '#/components/schemas/DateRange'
+        fips:
+          type: array
+          items:
+            type: string
     PropertyShapesRequest:
       type: object
       properties:
@@ -106,26 +123,37 @@ components:
           type: array
           items:
             type: string
-    ResolveRequest:
+    SearchResponse:
       type: object
-      description: Address, geolocation, or place name used to resolve a property.
       properties:
-        address:
+        count:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchSummaryItem'
+        search_token:
           type: string
-        city:
+    ResolveResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchSummaryItem'
+    DateRange:
+      type: object
+      properties:
+        min:
           type: string
-        state_code:
+          format: date
+        max:
           type: string
-        postal_code:
-          type: string
-        latitude:
-          type: number
-          format: double
-        longitude:
-          type: number
-          format: double
-        place_name:
-          type: string
+          format: date
+        relative_min:
+          type: integer
+        relative_max:
+          type: integer
     MapFilters:
       type: object
       description: Geospatial filters applied to the property search.
@@ -178,69 +206,6 @@ components:
         lon:
           type: number
           format: double
-    SearchSummaryItem:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The Reonomy property ID.
-        location:
-          $ref: '#/components/schemas/LatLon'
-    SearchResponse:
-      type: object
-      properties:
-        count:
-          type: integer
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/SearchSummaryItem'
-        search_token:
-          type: string
-    Range:
-      type: object
-      properties:
-        min:
-          type: number
-        max:
-          type: number
-    DateRange:
-      type: object
-      properties:
-        min:
-          type: string
-          format: date
-        max:
-          type: string
-          format: date
-        relative_min:
-          type: integer
-        relative_max:
-          type: integer
-    SearchSettings:
-      type: object
-      description: Attribute filters applied to the property search.
-      properties:
-        asset_category:
-          type: array
-          items:
-            type: string
-        land_use_code_description:
-          type: array
-          items:
-            type: string
-        building_area:
-          $ref: '#/components/schemas/Range'
-        sales_price:
-          $ref: '#/components/schemas/Range'
-        master_update_time:
-          $ref: '#/components/schemas/DateRange'
-        sale_update_time:
-          $ref: '#/components/schemas/DateRange'
-        fips:
-          type: array
-          items:
-            type: string
     SearchRequest:
       type: object
       properties:
@@ -255,6 +220,41 @@ components:
         limit:
           type: integer
           default: 10
+    SearchSummaryItem:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Reonomy property ID.
+        location:
+          $ref: '#/components/schemas/LatLon'
+    Range:
+      type: object
+      properties:
+        min:
+          type: number
+        max:
+          type: number
+    ResolveRequest:
+      type: object
+      description: Address, geolocation, or place name used to resolve a property.
+      properties:
+        address:
+          type: string
+        city:
+          type: string
+        state_code:
+          type: string
+        postal_code:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        place_name:
+          type: string
   securitySchemes:
     basicAuth:
       type: http
