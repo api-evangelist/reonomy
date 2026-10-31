@@ -1,4 +1,4 @@
-# Reonomy (reonomy)
+# Reonomy
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,156 +66,117 @@
 
 Reonomy (an Altus Group company) is a commercial real-estate property-intelligence platform whose REST API delivers property search, property detail, ownership, mortgage, sales and debt, tax, tenant, and contact / skip-trace data across U.S. commercial real estate. The API resolves addresses to a stable Reonomy property ID and returns rich detail records keyed by that ID.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/reonomy/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/reonomy/refs/heads/main/apis.yml)
+**Areas:** Commercial Real Estate · Property Data · Property Intelligence · Ownership · Skip Trace
 
-## Tags
+## Reonomy on APIs.io
 
-- Commercial Real Estate
-- Property Data
-- Property Intelligence
-- Ownership
-- Skip Trace
+Everything profiled for Reonomy is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/reonomy/](https://apis.io/providers/reonomy/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (2)
 
-- **Created:** 2026-06-21
-- **Modified:** 2026-06-21
+- [Reonomy Property API](https://apis.io/apis/reonomy/reonomy-property-api/) — Retrieve detailed property records by ID.
+- [Reonomy Search API](https://apis.io/apis/reonomy/reonomy-search-api/) — Search and resolve commercial real-estate properties.
 
-## APIs
+### Published properties
 
-### Reonomy Property Search API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Searches U.S. commercial real-estate properties by attribute filters (asset category, land use, building area, sale price, dates) and map filters (radius circle, polygon, bounding box), returning matching property IDs and coordinates. Includes the address / geolocation resolution endpoint that maps a known property to its Reonomy property ID.
+#### Agentic access (1)
 
-- **Human URL:** [https://api.reonomy.com/v2/docs/guides/search/](https://api.reonomy.com/v2/docs/guides/search/)
-- **Base URL:** `https://api.reonomy.com/v2`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Reonomy Agentic Access](https://apis.io/agentic-access/reonomy/reonomy-agentic-access/)
 
-- Search
-- Properties
-- Geospatial
+#### Collections (3)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://api.reonomy.com/v2/docs/guides/search/)
-- [API Reference](https://api.reonomy.com/v2/docs/api/reference/)
-- [OpenAPI](openapi/reonomy-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/reonomy.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/reonomy.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Reonomy Property API](https://apis.io/collections/reonomy/open-reonomy/)
+- [Reonomy Property API](https://apis.io/collections/reonomy/open-reonomy-property-api/)
+- [Reonomy Property Search API](https://apis.io/collections/reonomy/open-reonomy-search-api/)
 
-### Reonomy Property Detail API
+#### Security (2)
 
-Retrieves detailed records for a single property by ID, or up to 250 properties at once via the bulk endpoint, with selectable detail types (basic, taxes, sales, mortgages, ownership, tenants, foreclosure).
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://api.reonomy.com/v2/docs/guides/property-details/](https://api.reonomy.com/v2/docs/guides/property-details/)
-- **Base URL:** `https://api.reonomy.com/v2`
+- [Reonomy Authentication](https://apis.io/security/reonomy/reonomy-authentication/)
+- [Reonomy Domain Security](https://apis.io/security/reonomy/reonomy-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Property Detail
-- Parcel
-- Bulk
+Published plans, tiers and prices.
 
-#### Properties
+- [Reonomy Plans Pricing](https://apis.io/plans/reonomy/reonomy-plans-pricing/)
 
-- [Documentation](https://api.reonomy.com/v2/docs/guides/property-details/)
-- [API Reference](https://api.reonomy.com/v2/docs/api/reference/)
-- [OpenAPI](openapi/reonomy-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/reonomy.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/reonomy.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Reonomy Ownership API
+Published request limits.
 
-The ownership detail type on the Property Detail API returns likely owners, reported owners, mortgage signatories, and linked companies for a property, surfaced through the property and bulk endpoints.
+- [Reonomy Rate Limits](https://apis.io/rate-limits/reonomy/reonomy-rate-limits/)
 
-- **Human URL:** [https://api.reonomy.com/v2/docs/api/reference/](https://api.reonomy.com/v2/docs/api/reference/)
-- **Base URL:** `https://api.reonomy.com/v2`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Ownership
-- Reported Owners
-- Companies
+- [Reonomy Finops](https://apis.io/finops/reonomy/reonomy-finops/)
 
-#### Properties
+## Where to find this API
 
-- [API Reference](https://api.reonomy.com/v2/docs/api/reference/)
-- [OpenAPI](openapi/reonomy-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/reonomy.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/reonomy.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Reonomy Sales & Debt API
-
-The sales, mortgages, and foreclosure detail types on the Property Detail API return transaction history, deed sale amounts, lender and loan data (including CMBS), and default / foreclosure records for a property.
-
-- **Human URL:** [https://api.reonomy.com/v2/docs/api/reference/](https://api.reonomy.com/v2/docs/api/reference/)
-- **Base URL:** `https://api.reonomy.com/v2`
-
-#### Tags
-
-- Sales
-- Mortgages
-- Debt
-
-#### Properties
-
-- [API Reference](https://api.reonomy.com/v2/docs/api/reference/)
-- [OpenAPI](openapi/reonomy-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/reonomy.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/reonomy.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Reonomy Tenants API
-
-The tenants detail type on the Property Detail API returns occupant business data and associated contacts for a property.
-
-- **Human URL:** [https://api.reonomy.com/v2/docs/api/reference/](https://api.reonomy.com/v2/docs/api/reference/)
-- **Base URL:** `https://api.reonomy.com/v2`
-
-#### Tags
-
-- Tenants
-- Occupancy
-- Businesses
-
-#### Properties
-
-- [API Reference](https://api.reonomy.com/v2/docs/api/reference/)
-- [OpenAPI](openapi/reonomy-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/reonomy.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/reonomy.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Reonomy Contacts API
-
-Contact data (persons with names, jobs, addresses, phones, and emails) is returned through the ownership and tenant detail types; a filter_pii option excludes personally identifiable fields when required.
-
-- **Human URL:** [https://api.reonomy.com/v2/docs/api/reference/](https://api.reonomy.com/v2/docs/api/reference/)
-- **Base URL:** `https://api.reonomy.com/v2`
-
-#### Tags
-
-- Contacts
-- Skip Trace
-- Persons
-
-#### Properties
-
-- [API Reference](https://api.reonomy.com/v2/docs/api/reference/)
-- [OpenAPI](openapi/reonomy-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/reonomy.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/reonomy.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/reonomy)
-- [LinkedIn](https://www.linkedin.com/company/reonomy)
 - [Website](https://www.reonomy.com)
 - [Documentation](https://api.reonomy.com/v2/docs/)
-- [Plans](plans/reonomy-plans-pricing.yml)
-- [Rate Limits](rate-limits/reonomy-rate-limits.yml)
-- [Fin Ops](finops/reonomy-finops.yml)
+- [GitHub](https://github.com/reonomy)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 26.6** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 52.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 28.6 |
+| Access clarity | 5.3 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/reonomy/](https://apis.io/providers/reonomy/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Reonomy: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/reonomy/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
